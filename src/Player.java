@@ -10,7 +10,7 @@ public class Player {
     private final int SPEED = 8, GRAV = 1;
     boolean left, right, isJumping, isCrouching, releaseRight, releaseLeft;
     private int Xmin, Xmax, Ymin, Ymax;
-    ImageIcon i1 = new ImageIcon("megaman.png");
+    ImageIcon i1 = new ImageIcon("Fkyou.png");
     Image arnRunning_R[] = new Image[1];
 
     public Player() {
@@ -34,7 +34,7 @@ public class Player {
 
     public void move() {
         x += dx;
-        backgroundX = (backgroundX - dx);
+        PlayerX = (PlayerX - dx);
         RedPlatformX1 = (RedPlatformX1 - dx);
         if (isJumping) {
             y = 238 - (int) (90 * (((float) U_and_D_Counter) / 4));
@@ -74,10 +74,10 @@ public class Player {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_LEFT) {
             left = true;
-            dx = -SPEED;
+            dx = SPEED;
         } else if (code == KeyEvent.VK_RIGHT) {
             right = true;
-            dx = SPEED;
+            dx = -SPEED;
         } else if (code == KeyEvent.VK_UP) {
             isJumping = true;
         } else if (code == KeyEvent.VK_DOWN) {
@@ -95,7 +95,7 @@ public class Player {
             left = false;
             releaseLeft = true;
             if (right) {
-                dx = SPEED;
+                dx = -SPEED;
             } else {
                 dx = 0;
             }
@@ -103,7 +103,7 @@ public class Player {
             right = false;
             releaseRight = true;
             if (left) {
-                dx = -SPEED;
+                dx = SPEED;
             } else {
                 dx = 0;
             }
