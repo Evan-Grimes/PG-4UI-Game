@@ -110,7 +110,7 @@ public class Player {
             up = false;
             releaseUp = true;
             if (up) {
-                //dy = -SPEED;
+                dy = -SPEED;
             }else {
                 dy = 0;
             }
@@ -118,7 +118,7 @@ public class Player {
             down = false;
             releaseDown = true;
             if (up) {
-                //dy = SPEED;
+                dy = SPEED;
             }else {
                 dy = 0;
             }
