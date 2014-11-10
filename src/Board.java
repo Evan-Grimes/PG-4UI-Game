@@ -13,17 +13,14 @@ public class Board extends JPanel implements ActionListener {
     
     private Player p;
     private Timer timer;
-    private Image background, RedPlatform1, RedPlatform2;
-    // loading in the background image and set (timer/ speed) of the movment of the background 
+    private Image background;
     public Board() {
         super();
         p = new Player();
         addKeyListener(new ActionListener());
         setFocusable(true);
         ImageIcon i1 = new ImageIcon("peter's background.png");
-        ImageIcon i2 = new ImageIcon("lucario1.png");       
-        background = i1.getImage();
-        RedPlatform1 = i2.getImage();      
+        background = i1.getImage();  
         timer = new Timer(80, this);
         timer.start();
     }
@@ -40,8 +37,7 @@ public class Board extends JPanel implements ActionListener {
        // System.out.println(new Date());
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(background, p.backgroundX, 0, null);
-        g2d.drawImage(p.getImage(), 350, p.getY(), null);
-        g2d.drawImage(RedPlatform1, p.RedPlatformX1, 220, null);    
+        g2d.drawImage(p.getImage(), p.getX(), p.getY(), null);
     }
 
     private class ActionListener extends KeyAdapter {

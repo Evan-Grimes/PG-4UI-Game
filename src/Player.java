@@ -5,45 +5,41 @@ import javax.swing.*;
 public class Player {
 
     private Image img;
-    int x, y, dx, dy, backgroundX, BeginingY, L_and_R_Counter = 0, RedPlatformX1, PlayerX = 350, speedCoutner = 0, U_and_D_Counter = 0;
+    int i;
+    int x, y, dx, dy, PlayerX1, PlayerY1, backgroundX;
     long time;
-    private final int SPEED = 8, GRAV = 1;
-    boolean left, right, isJumping, isCrouching, releaseRight, releaseLeft;
-    private int Xmin, Xmax, Ymin, Ymax;
-    ImageIcon i1 = new ImageIcon("Fkyou.png");
-    Image arnRunning_R[] = new Image[1];
+    private final int SPEED = 8;
+    boolean left, right, up, down, releaseRight, releaseLeft, releaseUp, releaseDown;
+    ImageIcon i1 = new ImageIcon("Lucario1.png");
+    ImageIcon i2 = new ImageIcon("Lucario2.png");
+    Image arnRunning_R[] = new Image[2];
 
     public Player() {
         x = 350;
         y = 238;
         dx = 0;
         dy = 0;
-        backgroundX = 0;
-        RedPlatformX1 = 600;
+        PlayerX1 = 0;
+        PlayerY1 = 0;
         left = false;
         right = false;
-        isJumping = false;
-        isCrouching = false;
-        Xmin = 350;
-        Xmax = 450;
+        up = false;
+        down = false;
+        releaseUp = false;
+        releaseDown = false;
         releaseRight = false;
         releaseLeft = false;
         arnRunning_R[0] = i1.getImage();
+        arnRunning_R[1] = i2.getImage();
 
     }
 
     public void move() {
         x += dx;
-        PlayerX = (PlayerX - dx);
-        RedPlatformX1 = (RedPlatformX1 - dx);
-        if (isJumping) {
-            y = 238 - (int) (90 * (((float) U_and_D_Counter) / 4));
-            System.out.println(y);
-        }
-        if (!isJumping && !isOnPlatform1()) {
-            isJumping = false;
-            y = 238;
-        }
+        PlayerX1 = (PlayerX1 - dx);
+        y += dy;
+        PlayerY1 = (PlayerY1 - dx);
+
     }
 
     public int getX() {
@@ -55,17 +51,22 @@ public class Player {
     }
 
     public Image getImage() {
-        img = i1.getImage();
+        img = arnRunning_R[i];
         if (right == true) {
-            releaseLeft = false;
-            img = arnRunning_R[0];
-        } else if (left == true) {
             releaseRight = false;
-            img = arnRunning_R[0];
-        } else if (isJumping == true) {
-            img = arnRunning_R[0];
-        } else if (releaseLeft == true) {
-            img = i1.getImage();
+            i = 1;
+            System.out.println("Right");
+        } else if (left == true) {
+            releaseLeft = false;
+            i = 0;
+            System.out.println("Left");
+        } else if (up == true) {
+            releaseDown = false;
+            System.out.println("Up");
+        
+        } else if (down == true) {
+            releaseUp = false;
+            System.out.println("Down");
         }
         return img;
     }
@@ -74,23 +75,21 @@ public class Player {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_LEFT) {
             left = true;
-            dx = SPEED;
+            dx = -SPEED;
         } else if (code == KeyEvent.VK_RIGHT) {
             right = true;
-            dx = -SPEED;
+            dx = SPEED;
         } else if (code == KeyEvent.VK_UP) {
-            isJumping = true;
+            up = true;
+            dy = -SPEED;
         } else if (code == KeyEvent.VK_DOWN) {
-            isCrouching = true;
+            down = true;
+            dy = SPEED;
         }
     }
 
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
-        if (!isOnPlatform1()) {
-            U_and_D_Counter = 0;
-            L_and_R_Counter = 0;
-        }
         if (code == KeyEvent.VK_LEFT) {
             left = false;
             releaseLeft = true;
@@ -108,15 +107,21 @@ public class Player {
                 dx = 0;
             }
         } else if (code == KeyEvent.VK_UP) {
-            isJumping = false;
-        }
-    }
-
-    public boolean isOnPlatform1() {
-        if (PlayerX < (RedPlatformX1 - 28) || PlayerX > (RedPlatformX1 + 50)) {
-            return false;
-        } else {
-            return U_and_D_Counter == 4;
+            up = false;
+            releaseUp = true;
+            if (up) {
+                //dy = -SPEED;
+            }else {
+                dy = 0;
+            }
+            } else if (code == KeyEvent.VK_DOWN) {
+            down = false;
+            releaseDown = true;
+            if (up) {
+                //dy = SPEED;
+            }else {
+                dy = 0;
+            }
         }
     }
 }
