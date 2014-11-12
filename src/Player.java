@@ -75,6 +75,7 @@ public class Player {
             down = true;
             dy = SPEED;
         }
+        Bullet.SetVars(x,y, i);
     }
 
     public void keyReleased(KeyEvent k) {
@@ -105,4 +106,5 @@ public class Player {
             }
         }
     }
+    
 }
