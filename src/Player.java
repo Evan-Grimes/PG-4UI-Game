@@ -6,39 +6,33 @@ public class Player {
 
     private Image img;
     int i;
-    int x, y, dx, dy, PlayerX1, PlayerY1, backgroundX;
-    long time;
+    int x, y, bx, by, dx, dy, backgroundX;
     private final int SPEED = 8;
-    boolean left, right, up, down, releaseRight, releaseLeft, releaseUp, releaseDown;
+    boolean left, right, up, down, shoot;
     ImageIcon i1 = new ImageIcon("Lucario1.png");
     ImageIcon i2 = new ImageIcon("Lucario2.png");
+    ImageIcon b1 = new ImageIcon("Bullet.png");
     Image arnRunning_R[] = new Image[2];
 
     public Player() {
         x = 350;
         y = 238;
+        bx = 0;
+        by = 0;
         dx = 0;
         dy = 0;
-        PlayerX1 = 0;
-        PlayerY1 = 0;
         left = false;
         right = false;
         up = false;
         down = false;
-        releaseUp = false;
-        releaseDown = false;
-        releaseRight = false;
-        releaseLeft = false;
+        shoot = false;
         arnRunning_R[0] = i1.getImage();
         arnRunning_R[1] = i2.getImage();
-
     }
 
     public void move() {
         x += dx;
-        PlayerX1 = (PlayerX1 - dx);
         y += dy;
-        PlayerY1 = (PlayerY1 - dx);
 
     }
 
@@ -53,73 +47,60 @@ public class Player {
     public Image getImage() {
         img = arnRunning_R[i];
         if (right == true) {
-            releaseRight = false;
             i = 1;
             System.out.println("Right");
         } else if (left == true) {
-            releaseLeft = false;
             i = 0;
             System.out.println("Left");
         } else if (up == true) {
-            releaseDown = false;
             System.out.println("Up");
-        
+
         } else if (down == true) {
-            releaseUp = false;
             System.out.println("Down");
         }
         return img;
     }
-
-    public void keyPressed(KeyEvent e) {
-        int code = e.getKeyCode();
-        if (code == KeyEvent.VK_LEFT) {
+    public void keyPressed(KeyEvent k) {
+        int code = k.getKeyCode();
+        if (code == KeyEvent.VK_A) {
             left = true;
             dx = -SPEED;
-        } else if (code == KeyEvent.VK_RIGHT) {
+        } else if (code == KeyEvent.VK_D) {
             right = true;
             dx = SPEED;
-        } else if (code == KeyEvent.VK_UP) {
+        } else if (code == KeyEvent.VK_W) {
             up = true;
             dy = -SPEED;
-        } else if (code == KeyEvent.VK_DOWN) {
+        } else if (code == KeyEvent.VK_S) {
             down = true;
             dy = SPEED;
         }
     }
 
-    public void keyReleased(KeyEvent e) {
-        int code = e.getKeyCode();
-        if (code == KeyEvent.VK_LEFT) {
+    public void keyReleased(KeyEvent k) {
+        int code = k.getKeyCode();
+        if (code == KeyEvent.VK_A) {
             left = false;
-            releaseLeft = true;
             if (right) {
-                dx = -SPEED;
             } else {
                 dx = 0;
             }
-        } else if (code == KeyEvent.VK_RIGHT) {
+        } else if (code == KeyEvent.VK_D) {
             right = false;
-            releaseRight = true;
             if (left) {
-                dx = SPEED;
             } else {
                 dx = 0;
             }
-        } else if (code == KeyEvent.VK_UP) {
+        } else if (code == KeyEvent.VK_W) {
             up = false;
-            releaseUp = true;
             if (up) {
-                dy = -SPEED;
-            }else {
+            } else {
                 dy = 0;
             }
-            } else if (code == KeyEvent.VK_DOWN) {
+        } else if (code == KeyEvent.VK_S) {
             down = false;
-            releaseDown = true;
             if (up) {
-                dy = SPEED;
-            }else {
+            } else {
                 dy = 0;
             }
         }
