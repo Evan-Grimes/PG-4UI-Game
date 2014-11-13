@@ -9,8 +9,8 @@ public class Player {
     int x, y, bx, by, dx, dy, backgroundX;
     private final int SPEED = 8;
     boolean left, right, up, down, shoot;
-    ImageIcon i1 = new ImageIcon("Lucario1.png");
-    ImageIcon i2 = new ImageIcon("Lucario2.png");
+    ImageIcon i1 = new ImageIcon("Lucario1.png");// Looking Left
+    ImageIcon i2 = new ImageIcon("Lucario2.png");// Looking Right
     ImageIcon b1 = new ImageIcon("Bullet.png");
     Image arnRunning_R[] = new Image[2];
 
@@ -48,15 +48,11 @@ public class Player {
         img = arnRunning_R[i];
         if (right == true) {
             i = 1;
-            System.out.println("Right");
         } else if (left == true) {
             i = 0;
-            System.out.println("Left");
         } else if (up == true) {
-            System.out.println("Up");
 
         } else if (down == true) {
-            System.out.println("Down");
         }
         return img;
     }
@@ -64,15 +60,19 @@ public class Player {
         int code = k.getKeyCode();
         if (code == KeyEvent.VK_A) {
             left = true;
+            right = false;
             dx = -SPEED;
         } else if (code == KeyEvent.VK_D) {
             right = true;
+            left = false;
             dx = SPEED;
         } else if (code == KeyEvent.VK_W) {
             up = true;
+            down = false;
             dy = -SPEED;
         } else if (code == KeyEvent.VK_S) {
             down = true;
+            up = false;
             dy = SPEED;
         }
         Bullet.SetVars(x,y, i);

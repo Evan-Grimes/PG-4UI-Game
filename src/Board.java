@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
-//import java.util.Date;
 
 public class Board extends JPanel implements ActionListener {
 
@@ -21,7 +20,7 @@ public class Board extends JPanel implements ActionListener {
         super();
         p = new Player();
         b = new Bullet();
-        addKeyListener(new ActionListener());
+        addKeyListener(new Movement());
         setFocusable(true);
         ImageIcon i1 = new ImageIcon("Background.png");
         background = i1.getImage();
@@ -43,7 +42,7 @@ public class Board extends JPanel implements ActionListener {
         g2d.drawImage(p.getImage(), p.getX(), p.getY(), null);
     }
 
-    private class ActionListener extends KeyAdapter {
+    private class Movement extends KeyAdapter {
 
         @Override
         public void keyReleased(KeyEvent k) {
