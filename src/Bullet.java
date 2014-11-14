@@ -73,7 +73,6 @@ public class Bullet {
             }
         }
         return img;
-
     }
 
     public void keyPressed2(KeyEvent k) {
