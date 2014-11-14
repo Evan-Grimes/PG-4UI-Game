@@ -1,5 +1,12 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
 public class MainGame {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Frame frame = new Frame();
         String slvl=new String();
         
