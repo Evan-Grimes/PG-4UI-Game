@@ -83,21 +83,14 @@ public class Bullet {
                 dx = -BSPEED;
                 nCount2 = nS;
                 nCount = 2;
-                System.out.println(nS + " " + nCount + " " + nCount2);
                 if (nCount2 == 1) {
-                    System.out.println(stahp2 + " " + bx);
                     stahp2 += bx;
-                    System.out.println(stahp2 + " " + bx);
                     nS = 2;
-                    System.out.println("Please Stahp");
                 }
                 if (bx < stahp2) {
-                    System.out.println(nS + " " + nCount + " " + nCount2);
-                    System.out.println("PLEASEEEE STAHPPPP!!!!!!");
                     dx = 0;
                     stahp2 = -400;
                     nS = 1;
-                    System.out.println(nS + " " + nCount + " " + nCount2);
                     nCount = 0;
                     nCount2 = 0;
                 }

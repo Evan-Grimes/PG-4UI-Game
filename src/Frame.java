@@ -1,8 +1,8 @@
 import javax.swing.JFrame;
-
+import java.io.*;
 public class Frame extends JFrame {
 
-    public Frame() {
+    public Frame() throws FileNotFoundException{
         add(new Board());
         setTitle("Movement");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
