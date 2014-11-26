@@ -1,6 +1,4 @@
-import java.awt.Component;
 import javax.swing.JFrame;
-import java.io.*;
 public class Frame extends JFrame {
 
     public Frame() {

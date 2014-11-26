@@ -8,10 +8,10 @@ import java.awt.event.KeyEvent;
 import javax.swing.*;
 
 public class PanBoard extends JPanel implements ActionListener {
-
     static boolean drawn = false;
     private Player p;
     private Bullet b;
+    private Enemy e;
     private Timer timer;
     private Image background;
 
@@ -19,6 +19,7 @@ public class PanBoard extends JPanel implements ActionListener {
         super();
         p = new Player();
         b = new Bullet();
+        e = new Enemy();
         addKeyListener(new Movement());
         setFocusable(true);
         ImageIcon i1 = new ImageIcon("Background.png");
@@ -30,6 +31,7 @@ public class PanBoard extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent arg0) {
         p.move();
         b.move();
+        e.move();
         repaint();
     }
 
@@ -39,6 +41,7 @@ public class PanBoard extends JPanel implements ActionListener {
         g2d.drawImage(background, 0, 0, null);
         g2d.drawImage(b.getImage(), b.getBX(), b.getBY(), null);
         g2d.drawImage(p.getImage(), p.getX(), p.getY(), null);
+        g2d.drawImage(e.getImage(), e.getEX(), e.getEY(), null);
     }
 
     private class Movement extends KeyAdapter {

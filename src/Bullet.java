@@ -7,7 +7,7 @@ public class Bullet {
     private Image img;
     int k, nS;
     static int X, Y, I;
-    int bx, by, dx, dy, stahp, stahp2, nCount, nCount2, nStop, nShoot;
+    int x, y, dx, dy, stahp, stahp2, nCount, nCount2, nStop, nShoot;
     boolean shoot, stop;
     private final int BSPEED = 10;
     ImageIcon b1 = new ImageIcon("Nothing.png");
@@ -37,15 +37,15 @@ public class Bullet {
     }
 
     public void move() {
-        bx += dx;
-        by += dy;
+        x += dx;
+        y += dy;
         if (stop == false) {
-            bx = X; //Lucario X
-            by = Y; //Lucario Y
+            x = X; //Lucario X
+            y = Y; //Lucario Y
         }
         if (stop == true) {
             if (I == 0) {
-                if (bx <= stahp2) {
+                if (x <= stahp2) {
                     dx = 0;
                     stahp2 = -400;
                     nS = 1;
@@ -56,7 +56,7 @@ public class Bullet {
                 }
             }
             if (I == 1) {
-                    if (bx >= stahp) {
+                    if (x >= stahp) {
                         nShoot = 0;
                         dx = 0;
                         stahp = 400;
@@ -71,11 +71,11 @@ public class Bullet {
     }
 
     public int getBX() {
-        return bx;
+        return x;
     }
 
     public int getBY() {
-        return by;
+        return y;
     }
 
     public Image getImage() {
@@ -113,7 +113,7 @@ public class Bullet {
                     nCount2 = nS;
                     nCount = 2;
                     if (nCount2 == 1) {
-                        stahp2 += bx;
+                        stahp2 += x;
                         nS = 2;
                         
             }
@@ -127,7 +127,7 @@ public class Bullet {
                     nCount = nS;
                     nCount2 = 2;
                     if (nCount == 1) {
-                        stahp += bx;
+                        stahp += x;
                         nS = 2;
                     }
                 }
