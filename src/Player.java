@@ -11,14 +11,11 @@ public class Player {
     boolean left, right, up, down, shoot;
     ImageIcon i1 = new ImageIcon("Lucario1.png");// Looking Left
     ImageIcon i2 = new ImageIcon("Lucario2.png");// Looking Right
-    ImageIcon b1 = new ImageIcon("Bullet.png");
     Image arnRunning_R[] = new Image[2];
 
     public Player() {
         x = 350;
         y = 238;
-        bx = 0;
-        by = 0;
         dx = 0;
         dy = 0;
         left = false;
@@ -50,14 +47,11 @@ public class Player {
             i = 1;
         } else if (left == true) {
             i = 0;
-        } else if (up == true) {
-
-        } else if (down == true) {
         }
         return img;
     }
-    public void keyPressed(KeyEvent k) {
-        int code = k.getKeyCode();
+    public void keyPressed(KeyEvent w) {
+        int code = w.getKeyCode();
         if (code == KeyEvent.VK_A) {
             left = true;
             right = false;
@@ -75,11 +69,11 @@ public class Player {
             up = false;
             dy = SPEED;
         }
-        Bullet.SetVars(x,y, i);
+        Bullet.SetVars(x,y,i);
     }
 
-    public void keyReleased(KeyEvent k) {
-        int code = k.getKeyCode();
+    public void keyReleased(KeyEvent w) {
+        int code = w.getKeyCode();
         if (code == KeyEvent.VK_A) {
             left = false;
             if (right) {
@@ -94,7 +88,7 @@ public class Player {
             }
         } else if (code == KeyEvent.VK_W) {
             up = false;
-            if (up) {
+            if (down) {
             } else {
                 dy = 0;
             }

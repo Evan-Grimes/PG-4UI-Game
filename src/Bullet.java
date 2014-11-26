@@ -7,18 +7,18 @@ public class Bullet {
     private Image img;
     int k, nS;
     static int X, Y, I;
-    int bx, by, dx, dy, stahp, stahp2, nCount, nCount2;
-    boolean shoot;
-    private final int BSPEED = 30;
+    int bx, by, dx, dy, stahp, stahp2, nCount, nCount2, nStop, nShoot;
+    boolean shoot, stop;
+    private final int BSPEED = 10;
     ImageIcon b1 = new ImageIcon("Nothing.png");
-    ImageIcon b2 = new ImageIcon("Untitled.png");
-    ImageIcon b3 = new ImageIcon("Untitled2.png");
+    ImageIcon b2 = new ImageIcon("AuraSphere1.png");
+    ImageIcon b3 = new ImageIcon("AuraSphere2.png");
     Image arnShooting[] = new Image[3];
 
-    static void SetVars(int x, int y, int i) {
-        X = x;
-        Y = y;
-        I = i;
+    static void SetVars(int _x, int _y, int _i) {
+        X = _x;
+        Y = _y;
+        I = _i;
     }
 
     public Bullet() {
@@ -29,7 +29,7 @@ public class Bullet {
         stahp2 = -400;
         dx = 0;
         dy = 0;
-
+        stop = false;
         shoot = false;
         arnShooting[0] = b1.getImage();
         arnShooting[1] = b2.getImage();
@@ -39,7 +39,35 @@ public class Bullet {
     public void move() {
         bx += dx;
         by += dy;
-
+        if (stop == false) {
+            bx = X; //Lucario X
+            by = Y; //Lucario Y
+        }
+        if (stop == true) {
+            if (I == 0) {
+                if (bx <= stahp2) {
+                    dx = 0;
+                    stahp2 = -400;
+                    nS = 1;
+                    nCount = 0;
+                    nCount2 = 0;
+                    stop = false;
+                    System.out.println("Stop");
+                }
+            }
+            if (I == 1) {
+                    if (bx >= stahp) {
+                        nShoot = 0;
+                        dx = 0;
+                        stahp = 400;
+                        nS = 1;
+                        nCount = 0;
+                        nCount2 = 0;
+                        stop = false;
+                        System.out.println("Stop");
+                    }
+                }
+        }
     }
 
     public int getBX() {
@@ -54,77 +82,63 @@ public class Bullet {
         img = arnShooting[k];
         if (nCount == 0) {
             k = 0;
-            bx = X; //Lucario x
-            by = Y; //Lucario y
             return img;
         }
-        if (nCount2 == 0) {
-            k = 0;
-            bx = X; //Lucario x
-            by = Y; //Lucario y
-            return img;
-        }
-        if (shoot == true) {
-            if (I == 0) {
-                k = 2;
-            }
+        if (shoot = true) {
             if (I == 1) {
                 k = 1;
+                shoot = false;
+                //return img;
+            }
+            if (I == 0) {
+                k = 2;
+                shoot = false;
+               // return img;
             }
         }
         return img;
     }
 
-    public void keyPressed2(KeyEvent k) {
-        int code = k.getKeyCode();
+    public void keyPressed2(KeyEvent w) {
+        int code = w.getKeyCode();
         if (code == KeyEvent.VK_Q) {
+            System.out.println("PEW PEW");
             if (I == 0) { //Looking Left
-                shoot = true;
-                dx = -BSPEED;
-                nCount2 = nS;
-                nCount = 2;
-                if (nCount2 == 1) {
-                    stahp2 += bx;
-                    nS = 2;
-                }
-                if (bx < stahp2) {
-                    dx = 0;
-                    stahp2 = -400;
-                    nS = 1;
-                    nCount = 0;
-                    nCount2 = 0;
-                }
+                if (nS == 1) {
+                        nShoot =2;
+                    shoot = true;
+                    stop = false;
+                    System.out.println("Pew Pews");
+                    dx = -BSPEED;
+                    nCount2 = nS;
+                    nCount = 2;
+                    if (nCount2 == 1) {
+                        stahp2 += bx;
+                        nS = 2;
+                        
+            }
+            }
             }
             if (I == 1) { // Looking Right
-                shoot = true;
-                dx = BSPEED;
-                nCount = nS;
-                nCount2 = 2;
-                System.out.println(nS + " " + nCount + " " + nCount2);
-                if (nCount == 1) {
-                    System.out.println(stahp + " " + bx);
-                    stahp += bx;
-                    System.out.println(stahp + " " + bx);
-                    nS = 2;
-                    System.out.println("Please Stahp");
-                }
-                if (bx > stahp) {
-                    System.out.println(nS + " " + nCount + " " + nCount2);
-                    System.out.println("PLEASEEEE STAHPPPP!!!!!!");
-                    dx = 0;
-                    stahp = 400;
-                    nS = 1;
-                    System.out.println(nS + " " + nCount + " " + nCount2);
-                    nCount = 0;
-                    nCount2 = 0;
+                if (nS == 1) {
+                    System.out.println("PEW PEW");
+                    shoot = true;
+                    dx = BSPEED;
+                    nCount = nS;
+                    nCount2 = 2;
+                    if (nCount == 1) {
+                        stahp += bx;
+                        nS = 2;
+                    }
                 }
             }
         }
     }
-    public void keyReleased2(KeyEvent k) {
-        int code = k.getKeyCode();
+
+    public void keyReleased2(KeyEvent w) {
+        int code = w.getKeyCode();
         if (code == KeyEvent.VK_Q) {
-            shoot = false;
+            stop = true;
         }
     }
 }
