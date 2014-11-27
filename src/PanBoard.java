@@ -41,12 +41,12 @@ public class PanBoard extends JPanel implements ActionListener {
         JLabel tHp = new JLabel("Health: " + Hp);
         JLabel tAtk = new JLabel("Attack: " + Atk);
         JLabel tLvl = new JLabel("Level: " + Lvl);
-        JLabel tName = new JLabel(sName+":");
-        JLabel tcurrxp= new JLabel("Experience:  "+currxp);
-        JLabel txpgoal= new JLabel("/ "+xpgoal);
-        if(Lvl==5){
-            tcurrxp= new JLabel("Score: "+currxp);
-            txpgoal= new JLabel(" ");
+        JLabel tName = new JLabel(sName + ":");
+        JLabel tcurrxp = new JLabel("Experience:  " + currxp);
+        JLabel txpgoal = new JLabel("/ " + xpgoal);
+        if (Lvl == 5) {
+            tcurrxp = new JLabel("Score: " + currxp);
+            txpgoal = new JLabel(" ");
         }
         add(tName);
         add(tLvl);

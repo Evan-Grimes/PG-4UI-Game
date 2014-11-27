@@ -7,22 +7,21 @@ public class Player {
     private Image img;
     int i;
     int x, y, bx, by, dx, dy, backgroundX;
-    private final int SPEED = 8;
-    boolean left, right, up, down, shoot;
+    private final int SPEED = 15;
+    boolean left, right, up, down;
     ImageIcon i1 = new ImageIcon("Lucario1.png");// Looking Left
     ImageIcon i2 = new ImageIcon("Lucario2.png");// Looking Right
     Image arnRunning_R[] = new Image[2];
 
     public Player() {
-        x = 350;
-        y = 238;
+        x = 550;
+        y = 200;
         dx = 0;
         dy = 0;
         left = false;
         right = false;
         up = false;
         down = false;
-        shoot = false;
         arnRunning_R[0] = i1.getImage();
         arnRunning_R[1] = i2.getImage();
     }
@@ -69,7 +68,8 @@ public class Player {
             up = false;
             dy = SPEED;
         }
-        Bullet.SetVars(x,y,i);
+        Bullet.SetPlayer(x,y,i);
+        Enemy.SetPlayer(x,y,i);
     }
 
     public void keyReleased(KeyEvent w) {

@@ -7,15 +7,15 @@ public class Bullet {
     private Image img;
     int k, nS;
     static int X, Y, I;
-    int x, y, dx, dy, stahp, stahp2, nCount, nCount2, nStop, nShoot;
+    int x, y, dx, dy, stahp, stahp2, nCount, nCount2, nStop, nShoot, nLeft, nRight;
     boolean shoot, stop;
-    private final int BSPEED = 10;
+    private final int BSPEED = 40;
     ImageIcon b1 = new ImageIcon("Nothing.png");
     ImageIcon b2 = new ImageIcon("AuraSphere1.png");
     ImageIcon b3 = new ImageIcon("AuraSphere2.png");
     Image arnShooting[] = new Image[3];
 
-    static void SetVars(int _x, int _y, int _i) {
+    static void SetPlayer(int _x, int _y, int _i) {
         X = _x;
         Y = _y;
         I = _i;
@@ -27,6 +27,8 @@ public class Bullet {
         nS = 1;
         stahp = 400;
         stahp2 = -400;
+        nLeft = 0;
+        nRight = 0;
         dx = 0;
         dy = 0;
         stop = false;
@@ -44,18 +46,19 @@ public class Bullet {
             y = Y; //Lucario Y
         }
         if (stop == true) {
-            if (I == 0) {
+            if (nLeft == 1) {
                 if (x <= stahp2) {
                     dx = 0;
                     stahp2 = -400;
                     nS = 1;
                     nCount = 0;
                     nCount2 = 0;
+                    nLeft = 0;
                     stop = false;
                     System.out.println("Stop");
                 }
             }
-            if (I == 1) {
+            if (nRight == 1) {
                     if (x >= stahp) {
                         nShoot = 0;
                         dx = 0;
@@ -63,6 +66,7 @@ public class Bullet {
                         nS = 1;
                         nCount = 0;
                         nCount2 = 0;
+                        nRight = 0;
                         stop = false;
                         System.out.println("Stop");
                     }
@@ -84,18 +88,6 @@ public class Bullet {
             k = 0;
             return img;
         }
-        if (shoot = true) {
-            if (I == 1) {
-                k = 1;
-                shoot = false;
-                //return img;
-            }
-            if (I == 0) {
-                k = 2;
-                shoot = false;
-               // return img;
-            }
-        }
         return img;
     }
 
@@ -105,7 +97,9 @@ public class Bullet {
             System.out.println("PEW PEW");
             if (I == 0) { //Looking Left
                 if (nS == 1) {
+                    nLeft = 1;
                         nShoot =2;
+                        k = 2;
                     shoot = true;
                     stop = false;
                     System.out.println("Pew Pews");
@@ -123,6 +117,8 @@ public class Bullet {
                 if (nS == 1) {
                     System.out.println("PEW PEW");
                     shoot = true;
+                    nRight = 1;
+                    k = 1;
                     dx = BSPEED;
                     nCount = nS;
                     nCount2 = 2;
@@ -133,6 +129,7 @@ public class Bullet {
                 }
             }
         }
+        Enemy.SetBullet(x, y);
     }
 
     public void keyReleased2(KeyEvent w) {
