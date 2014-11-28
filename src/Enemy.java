@@ -5,7 +5,7 @@ public class Enemy {
 
     private Image img;
     int k;
-    int x, y, dx, dy;
+    int x, y, dx, dy, speed;
     static int X, Y, I, BX, BY;
     ImageIcon e1 = new ImageIcon("Groudon1.png");
     ImageIcon e2 = new ImageIcon("Groudon2.png");
@@ -25,8 +25,8 @@ public class Enemy {
     public Enemy() {
         dx = 0;
         dy = 0;
-        x = 200;
-        y = 100;
+        x = 0;
+        y = 0;
         arnEnemy[1] = e1.getImage();
         arnEnemy[2] = e2.getImage();
     }
