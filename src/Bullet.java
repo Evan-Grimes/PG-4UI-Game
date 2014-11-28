@@ -10,9 +10,8 @@ public class Bullet {
     int x, y, dx, dy, stahp, stahp2, nCount, nCount2, nStop, nShoot, nLeft, nRight;
     boolean shoot, stop;
     private final int BSPEED = 40;
-    ImageIcon b1 = new ImageIcon("Nothing.png");
-    ImageIcon b2 = new ImageIcon("AuraSphere1.png");
-    ImageIcon b3 = new ImageIcon("AuraSphere2.png");
+    ImageIcon b1 = new ImageIcon("AuraSphere1.png");
+    ImageIcon b2 = new ImageIcon("AuraSphere2.png");
     Image arnShooting[] = new Image[3];
 
     static void SetPlayer(int _x, int _y, int _i) {
@@ -33,9 +32,8 @@ public class Bullet {
         dy = 0;
         stop = false;
         shoot = false;
-        arnShooting[0] = b1.getImage();
-        arnShooting[1] = b2.getImage();
-        arnShooting[2] = b3.getImage();
+        arnShooting[1] = b1.getImage();
+        arnShooting[2] = b2.getImage();
     }
 
     public void move() {
@@ -55,7 +53,6 @@ public class Bullet {
                     nCount2 = 0;
                     nLeft = 0;
                     stop = false;
-                    System.out.println("Stop");
                 }
             }
             if (nRight == 1) {
@@ -68,7 +65,6 @@ public class Bullet {
                         nCount2 = 0;
                         nRight = 0;
                         stop = false;
-                        System.out.println("Stop");
                     }
                 }
         }
@@ -94,7 +90,6 @@ public class Bullet {
     public void keyPressed2(KeyEvent w) {
         int code = w.getKeyCode();
         if (code == KeyEvent.VK_Q) {
-            System.out.println("PEW PEW");
             if (I == 0) { //Looking Left
                 if (nS == 1) {
                     nLeft = 1;
@@ -102,7 +97,6 @@ public class Bullet {
                         k = 2;
                     shoot = true;
                     stop = false;
-                    System.out.println("Pew Pews");
                     dx = -BSPEED;
                     nCount2 = nS;
                     nCount = 2;
@@ -115,7 +109,6 @@ public class Bullet {
             }
             if (I == 1) { // Looking Right
                 if (nS == 1) {
-                    System.out.println("PEW PEW");
                     shoot = true;
                     nRight = 1;
                     k = 1;

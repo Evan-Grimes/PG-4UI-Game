@@ -7,9 +7,8 @@ public class Enemy {
     int k;
     int x, y, dx, dy;
     static int X, Y, I, BX, BY;
-    ImageIcon e1 = new ImageIcon("Nothing.png");
-    ImageIcon e2 = new ImageIcon("Groudon1.png");
-    ImageIcon e3 = new ImageIcon("Groudon2.png");
+    ImageIcon e1 = new ImageIcon("Groudon1.png");
+    ImageIcon e2 = new ImageIcon("Groudon2.png");
     Image arnEnemy[] = new Image[3];
 
     static void SetPlayer(int _x, int _y, int _i) {
@@ -28,9 +27,8 @@ public class Enemy {
         dy = 0;
         x = 200;
         y = 100;
-        arnEnemy[0] = e1.getImage();
-        arnEnemy[1] = e2.getImage();
-        arnEnemy[2] = e3.getImage();
+        arnEnemy[1] = e1.getImage();
+        arnEnemy[2] = e2.getImage();
     }
 
     public void move() {
@@ -54,11 +52,11 @@ public class Enemy {
     }
 
     public int getEX() {
-        return x - 50;
+        return x - 30;
     }
 
     public int getEY() {
-        return y - 50;
+        return y - 30;
     }
 
     public Image getImage() {
