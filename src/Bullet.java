@@ -6,13 +6,23 @@ public class Bullet {
 
     private Image img;
     int k, nS;
-    static int X, Y, I;
-    int x, y, dx, dy, stahp, stahp2, nCount, nCount2, nStop, nShoot, nLeft, nRight;
+    int EHMin, EWMin;
+    static int X, Y, I, EX, EY, EH, EW;
+    int x, y, dx, dy, nStahp, nStahp2, nCount, nCount2, nStop, nLeft, nRight;
     boolean shoot, stop;
-    private final int BSPEED = 40;
+    private final int bSpeed = 40;
     ImageIcon b1 = new ImageIcon("AuraSphere1.png");
     ImageIcon b2 = new ImageIcon("AuraSphere2.png");
+    int imgWidth = b1.getIconHeight();
+    int imgHeight = b2.getIconWidth();
     Image arnShooting[] = new Image[3];
+
+    static void SetEnemy(int _x, int _y, int _EH, int _EW) {
+        EX = _x;
+        EY = _y;
+        EH = _EH;
+        EW = _EW;
+    }
 
     static void SetPlayer(int _x, int _y, int _i) {
         X = _x;
@@ -24,8 +34,8 @@ public class Bullet {
         nCount = 0;
         nCount2 = 0;
         nS = 1;
-        stahp = 400;
-        stahp2 = -400;
+        nStahp = 400;
+        nStahp2 = -400;
         nLeft = 0;
         nRight = 0;
         dx = 0;
@@ -37,17 +47,20 @@ public class Bullet {
     }
 
     public void move() {
+        EHMin = EH - EY;
+        EWMin = EW - EX;
+    Enemy.SetBullet(x, y);
         x += dx;
         y += dy;
         if (stop == false) {
-            x = X; //Lucario X
-            y = Y; //Lucario Y
+            x = X;
+            y = Y;
         }
         if (stop == true) {
             if (nLeft == 1) {
-                if (x <= stahp2) {
+                if (x <= nStahp2) {
                     dx = 0;
-                    stahp2 = -400;
+                    nStahp2 = -400;
                     nS = 1;
                     nCount = 0;
                     nCount2 = 0;
@@ -56,17 +69,19 @@ public class Bullet {
                 }
             }
             if (nRight == 1) {
-                    if (x >= stahp) {
-                        nShoot = 0;
-                        dx = 0;
-                        stahp = 400;
-                        nS = 1;
-                        nCount = 0;
-                        nCount2 = 0;
-                        nRight = 0;
-                        stop = false;
-                    }
+                if (x >= nStahp) {
+                    dx = 0;
+                    nStahp = 400;
+                    nS = 1;
+                    nCount = 0;
+                    nCount2 = 0;
+                    nRight = 0;
+                    stop = false;
                 }
+            }
+        }
+        if (y < EH && y > EHMin && x < EW && x > EWMin) {
+            System.out.println("GET SHOT DOWN");
         }
     }
 
@@ -92,37 +107,37 @@ public class Bullet {
         if (code == KeyEvent.VK_Q) {
             if (I == 0) { //Looking Left
                 if (nS == 1) {
-                    nLeft = 1;
-                        nShoot =2;
-                        k = 2;
-                    shoot = true;
                     stop = false;
-                    dx = -BSPEED;
+                    shoot = true;
+                    nLeft = 1;
+                    k = 2;
+                    dx = -bSpeed;
                     nCount2 = nS;
                     nCount = 2;
                     if (nCount2 == 1) {
-                        stahp2 += x;
+                        nStahp2 += x;
                         nS = 2;
-                        
-            }
-            }
+
+                    }
+                }
             }
             if (I == 1) { // Looking Right
                 if (nS == 1) {
+                    stop = false;
                     shoot = true;
                     nRight = 1;
                     k = 1;
-                    dx = BSPEED;
+                    dx = bSpeed;
                     nCount = nS;
                     nCount2 = 2;
                     if (nCount == 1) {
-                        stahp += x;
+                        nStahp += x;
                         nS = 2;
                     }
                 }
             }
         }
-        Enemy.SetBullet(x, y);
+        
     }
 
     public void keyReleased2(KeyEvent w) {

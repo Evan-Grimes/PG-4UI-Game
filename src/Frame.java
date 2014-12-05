@@ -3,7 +3,7 @@ public class Frame extends JFrame {
 
     public Frame() {
         add(new PanBoard());
-        setTitle("Movement");
+        setTitle("Welp");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1200, 400); //1370, 730 for fullscreen for laptop
         this.setResizable(true);

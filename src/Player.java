@@ -9,8 +9,10 @@ public class Player {
     int x, y, bx, by, dx, dy, backgroundX;
     private final int SPEED = 15;
     boolean left, right, up, down;
-    ImageIcon i1 = new ImageIcon("Lucario1.png");// Looking Left
-    ImageIcon i2 = new ImageIcon("Lucario2.png");// Looking Right
+    ImageIcon p1 = new ImageIcon("Lucario1.png");// Looking Left
+    ImageIcon p2 = new ImageIcon("Lucario2.png");// Looking Right
+    int imgWidth = p1.getIconHeight();
+    int imgHeight = p2.getIconWidth();
     Image arnRunning_R[] = new Image[2];
 
     public Player() {
@@ -22,8 +24,8 @@ public class Player {
         right = false;
         up = false;
         down = false;
-        arnRunning_R[0] = i1.getImage();
-        arnRunning_R[1] = i2.getImage();
+        arnRunning_R[0] = p1.getImage();
+        arnRunning_R[1] = p2.getImage();
     }
 
     public void move() {
