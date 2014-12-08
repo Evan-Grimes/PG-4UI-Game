@@ -29,6 +29,8 @@ public class Player {
     }
 
     public void move() {
+        Bullet.SetPlayer(x,y,i);
+        Enemy.SetPlayer(x,y,i);
         x += dx;
         y += dy;
 
@@ -70,8 +72,7 @@ public class Player {
             up = false;
             dy = SPEED;
         }
-        Bullet.SetPlayer(x,y,i);
-        Enemy.SetPlayer(x,y,i);
+        
     }
 
     public void keyReleased(KeyEvent w) {

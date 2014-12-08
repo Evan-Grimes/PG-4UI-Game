@@ -8,8 +8,8 @@ public class Bullet {
     int k, nS;
     int EHMin, EWMin;
     static int X, Y, I, EX, EY, EH, EW;
-    int x, y, dx, dy, nStahp, nStahp2, nCount, nCount2, nStop, nLeft, nRight;
-    boolean shoot, stop;
+    int x, y, dx, dy, nStahp, nStahp2, nCount, nCount2, nStop, nLeft, nRight, nHit;
+    boolean shoot, stop, go;
     private final int bSpeed = 40;
     ImageIcon b1 = new ImageIcon("AuraSphere1.png");
     ImageIcon b2 = new ImageIcon("AuraSphere2.png");
@@ -42,23 +42,21 @@ public class Bullet {
         dy = 0;
         stop = false;
         shoot = false;
+        go = false;
         arnShooting[1] = b1.getImage();
         arnShooting[2] = b2.getImage();
     }
 
     public void move() {
+        Enemy.SetBullet(x, y);
         EHMin = EH - EY;
         EWMin = EW - EX;
-    Enemy.SetBullet(x, y);
         x += dx;
         y += dy;
-        if (stop == false) {
-            x = X;
-            y = Y;
-        }
-        if (stop == true) {
             if (nLeft == 1) {
                 if (x <= nStahp2) {
+                    x = 9999;
+                    y = 9999;
                     dx = 0;
                     nStahp2 = -400;
                     nS = 1;
@@ -70,6 +68,8 @@ public class Bullet {
             }
             if (nRight == 1) {
                 if (x >= nStahp) {
+                    x = 9999;
+                    y = 9999;
                     dx = 0;
                     nStahp = 400;
                     nS = 1;
@@ -78,10 +78,11 @@ public class Bullet {
                     nRight = 0;
                     stop = false;
                 }
-            }
         }
         if (y < EH && y > EHMin && x < EW && x > EWMin) {
-            System.out.println("GET SHOT DOWN");
+            nHit++;
+            System.out.println("Smack");
+            
         }
     }
 
@@ -107,12 +108,14 @@ public class Bullet {
         if (code == KeyEvent.VK_Q) {
             if (I == 0) { //Looking Left
                 if (nS == 1) {
+                    x = X;
+                    y = Y;
                     stop = false;
                     shoot = true;
                     nLeft = 1;
                     k = 2;
                     dx = -bSpeed;
-                    nCount2 = nS;
+                    nCount2 = 1;
                     nCount = 2;
                     if (nCount2 == 1) {
                         nStahp2 += x;
@@ -123,6 +126,8 @@ public class Bullet {
             }
             if (I == 1) { // Looking Right
                 if (nS == 1) {
+                    x = X;
+                    y = Y;
                     stop = false;
                     shoot = true;
                     nRight = 1;
@@ -137,7 +142,7 @@ public class Bullet {
                 }
             }
         }
-        
+
     }
 
     public void keyReleased2(KeyEvent w) {

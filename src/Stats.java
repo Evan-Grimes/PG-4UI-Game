@@ -1,9 +1,11 @@
+
 import java.io.*;
 import java.util.*;
 
 public class Stats {
 
     public Stats() throws FileNotFoundException {
+        int nHit;
         String slvl = new String();
         String sName = new String();
         Scanner sin = new Scanner(System.in);
@@ -68,7 +70,10 @@ public class Stats {
             atk = 25;
             hp = 125;
         }
+        
         sName=nin.next();
-        PanBoard.setvars2(lvl, atk, hp, sName, currXp, Xpgoal);
+        PanBoard.setStats(lvl, atk, hp, sName, currXp, Xpgoal);
     }
+    static void setHit(int _nHit) {
+        nHit = _nHit;
 }

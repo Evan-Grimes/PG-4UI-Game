@@ -1,6 +1,4 @@
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -15,16 +13,16 @@ public class PanBoard extends JPanel implements ActionListener {
     private Enemy e;
     private Timer timer;
     private Image background;
-    static int Atk, Lvl, Hp, currxp, xpgoal;
+    static int nAtk, nLvl, nHp, nCurrxp, nXpgoal;
     static String sName;
 
-    static void setvars2(int _Lvl, int _Atk, int _Hp, String _sName, int _currxp, int _xpgoal) {
-        Atk = _Atk;
-        Lvl = _Lvl;
-        Hp = _Hp;
+    static void setStats(int _Lvl, int _Atk, int _Hp, String _sName, int _currxp, int _xpgoal) {
+        nAtk = _Atk;
+        nLvl = _Lvl;
+        nHp = _Hp;
         sName = _sName;
-        currxp = _currxp;
-        xpgoal = _xpgoal;
+        nCurrxp = _currxp;
+        nXpgoal = _xpgoal;
     }
 
     public PanBoard() {
@@ -38,7 +36,8 @@ public class PanBoard extends JPanel implements ActionListener {
         background = i1.getImage();
         timer = new Timer(80, this);
         timer.start();
-        JLabel tHp = new JLabel("Health: " + Hp);
+        Label();
+        /*JLabel tHp = new JLabel("Health: " + Hp);
         JLabel tAtk = new JLabel("Attack: " + Atk);
         JLabel tLvl = new JLabel("Level: " + Lvl);
         JLabel tName = new JLabel(sName + ":");
@@ -49,13 +48,18 @@ public class PanBoard extends JPanel implements ActionListener {
             txpgoal = new JLabel(" ");
         }
         add(tName);
-        add(tLvl);
+        /dd(tLvl);
         add(tHp);
         add(tAtk);
         add(tcurrxp);
-        add(txpgoal);
+        add(txpgoal);*/
     }
-
+ public void Label() {
+     setLayout(new FlowLayout());
+     add(new Label(sName + "  -  Level: " +
+                nLvl + "  Health: " + nHp + "  Attack: " + nAtk + "  Experience: " +
+                nCurrxp + " / " + nXpgoal), BorderLayout.NORTH);
+ }
     public void actionPerformed(ActionEvent arg0) {
         p.move();
         b.move();
@@ -66,7 +70,7 @@ public class PanBoard extends JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(background, 0, 25, null);
+        g2d.drawImage(background, 0, 0, null);
         g2d.drawImage(b.getImage(), b.getBX(), b.getBY(), null);
         g2d.drawImage(p.getImage(), p.getX(), p.getY(), null);
         g2d.drawImage(e.getImage(), e.getEX(), e.getEY(), null);
