@@ -13,16 +13,24 @@ public class PanBoard extends JPanel implements ActionListener {
     private Enemy e;
     private Timer timer;
     private Image background;
-    static int nAtk, nLvl, nHp, nCurrxp, nXpgoal;
+    static int nAtk, nLvl, nHp, nCurrxp, nXpgoal, nHit, nHit1;
     static String sName;
+    Label JLabel;
+    int nChange = 1;
 
-    static void setStats(int _Lvl, int _Atk, int _Hp, String _sName, int _currxp, int _xpgoal) {
+    static void setStats(int _Lvl, int _Atk, int _Hp, String _sName,
+            int _currxp, int _xpgoal) {
         nAtk = _Atk;
         nLvl = _Lvl;
         nHp = _Hp;
         sName = _sName;
         nCurrxp = _currxp;
         nXpgoal = _xpgoal;
+    }
+
+    static void setHit(int _nHit, int _nHit1) {
+        nHit = _nHit;
+        nHit1 = _nHit;
     }
 
     public PanBoard() {
@@ -38,29 +46,50 @@ public class PanBoard extends JPanel implements ActionListener {
         timer.start();
         Label();
         /*JLabel tHp = new JLabel("Health: " + Hp);
-        JLabel tAtk = new JLabel("Attack: " + Atk);
-        JLabel tLvl = new JLabel("Level: " + Lvl);
-        JLabel tName = new JLabel(sName + ":");
-        JLabel tcurrxp = new JLabel("Experience:  " + currxp);
-        JLabel txpgoal = new JLabel("/ " + xpgoal);
-        if (Lvl == 5) {
-            tcurrxp = new JLabel("Score: " + currxp);
-            txpgoal = new JLabel(" ");
-        }
-        add(tName);
-        /dd(tLvl);
-        add(tHp);
-        add(tAtk);
-        add(tcurrxp);
-        add(txpgoal);*/
+         JLabel tAtk = new JLabel("Attack: " + Atk);
+         JLabel tLvl = new JLabel("Level: " + Lvl);
+         JLabel tName = new JLabel(sName + ":");
+         JLabel tcurrxp = new JLabel("Experience:  " + currxp);
+         JLabel txpgoal = new JLabel("/ " + xpgoal);
+         if (Lvl == 5) {
+         tcurrxp = new JLabel("Score: " + currxp);
+         txpgoal = new JLabel(" ");
+         }
+         add(tName);
+         /dd(tLvl);
+         add(tHp);
+         add(tAtk);
+         add(tcurrxp);
+         add(txpgoal);*/
     }
- public void Label() {
-     setLayout(new FlowLayout());
-     add(new Label(sName + "  -  Level: " +
-                nLvl + "  Health: " + nHp + "  Attack: " + nAtk + "  Experience: " +
-                nCurrxp + " / " + nXpgoal), BorderLayout.NORTH);
- }
+
+    private void Label() {
+
+        if (nHit == nHit1) {
+            System.out.println(nHit + " " + nHit1);
+            setLayout(new FlowLayout());
+            add(JLabel = new Label(sName + "  -  Level: "
+                    + nLvl + "  Health: " + nHp + "  Attack: " + nAtk + "  Experience: "
+                    + nHit + " / " + nXpgoal), BorderLayout.NORTH);
+            //nHit1 -= nChange;
+            //nChange = 0;
+        } else if (nHit > nHit1) {
+            System.out.println("CHANGE");
+            RemoveLabel();
+        } else {
+            //add(JLabel);
+        }
+    }
+
+    private void RemoveLabel() {
+        System.out.println("IS GOOD");
+        remove(JLabel);
+        nHit1++;
+        //nChange = 1;
+    }
+
     public void actionPerformed(ActionEvent arg0) {
+        Label();
         p.move();
         b.move();
         e.move();

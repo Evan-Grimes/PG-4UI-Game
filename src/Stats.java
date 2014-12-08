@@ -1,19 +1,16 @@
-
 import java.io.*;
 import java.util.*;
 
 public class Stats {
-
     public Stats() throws FileNotFoundException {
-        int nHit;
         String slvl = new String();
         String sName = new String();
         Scanner sin = new Scanner(System.in);
         int atk = 1;
         int lvl = 0;
         int hp = 0;
-        int currXp=0;
-        int Xpgoal=0;
+        int currXp = 0;
+        int Xpgoal = 0;
 
         try {
             File level = new File("level.txt");
@@ -25,7 +22,7 @@ public class Stats {
             if (!name.exists()) {
                 name.createNewFile();
                 System.out.println("Enter your name");
-                sName=sin.next();
+                sName = sin.next();
                 //System.out.println(sName);
             }
             FileWriter fileWritter = new FileWriter(level.getName(), true);
@@ -49,31 +46,30 @@ public class Stats {
             lvl = 1;
             atk = 5;
             hp = 25;
-            Xpgoal=100;
+            Xpgoal = 100;
         } else if (slvl.equals("two")) {
             lvl = 2;
             atk = 10;
             hp = 50;
-            Xpgoal=150;
+            Xpgoal = 150;
         } else if (slvl.equals("three")) {
             lvl = 3;
             atk = 15;
             hp = 75;
-            Xpgoal=200;
+            Xpgoal = 200;
         } else if (slvl.equals("four")) {
             lvl = 4;
             atk = 20;
             hp = 100;
-            Xpgoal=250;
+            Xpgoal = 250;
         } else if (slvl.equals("five")) {
             lvl = 5;
             atk = 25;
             hp = 125;
         }
-        
-        sName=nin.next();
+        sName = nin.next();
         PanBoard.setStats(lvl, atk, hp, sName, currXp, Xpgoal);
     }
-    static void setHit(int _nHit) {
-        nHit = _nHit;
+
+    
 }

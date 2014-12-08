@@ -1,6 +1,7 @@
 import java.awt.event.KeyEvent;
 import javax.swing.*;
 import java.awt.Image;
+import java.awt.Label;
 
 public class Bullet {
 
@@ -8,7 +9,8 @@ public class Bullet {
     int k, nS;
     int EHMin, EWMin;
     static int X, Y, I, EX, EY, EH, EW;
-    int x, y, dx, dy, nStahp, nStahp2, nCount, nCount2, nStop, nLeft, nRight, nHit;
+    int x, y, dx, dy, nStahp, nStahp2, nCount, nCount2, nStop, nLeft,
+            nRight, nHit, nEXP, nHit1;
     boolean shoot, stop, go;
     private final int bSpeed = 40;
     ImageIcon b1 = new ImageIcon("AuraSphere1.png");
@@ -16,7 +18,7 @@ public class Bullet {
     int imgWidth = b1.getIconHeight();
     int imgHeight = b2.getIconWidth();
     Image arnShooting[] = new Image[3];
-
+    Label JLabel;
     static void SetEnemy(int _x, int _y, int _EH, int _EW) {
         EX = _x;
         EY = _y;
@@ -31,6 +33,9 @@ public class Bullet {
     }
 
     public Bullet() {
+        nEXP = 5;
+        nHit = 0;
+        nHit1 = 0;
         nCount = 0;
         nCount2 = 0;
         nS = 1;
@@ -53,39 +58,65 @@ public class Bullet {
         EWMin = EW - EX;
         x += dx;
         y += dy;
-            if (nLeft == 1) {
-                if (x <= nStahp2) {
-                    x = 9999;
-                    y = 9999;
-                    dx = 0;
-                    nStahp2 = -400;
-                    nS = 1;
-                    nCount = 0;
-                    nCount2 = 0;
-                    nLeft = 0;
-                    stop = false;
-                }
+        if (nLeft == 1) {
+            if (x <= nStahp2) {
+                x = 9999;
+                y = 9999;
+                dx = 0;
+                nStahp2 = -400;
+                nS = 1;
+                nCount = 0;
+                nCount2 = 0;
+                nLeft = 0;
+                stop = false;
             }
-            if (nRight == 1) {
-                if (x >= nStahp) {
-                    x = 9999;
-                    y = 9999;
-                    dx = 0;
-                    nStahp = 400;
-                    nS = 1;
-                    nCount = 0;
-                    nCount2 = 0;
-                    nRight = 0;
-                    stop = false;
-                }
+        }
+        if (nRight == 1) {
+            if (x >= nStahp) {
+                x = 9999;
+                y = 9999;
+                dx = 0;
+                nStahp = 400;
+                nS = 1;
+                nCount = 0;
+                nCount2 = 0;
+                nRight = 0;
+                stop = false;
+            }
         }
         if (y < EH && y > EHMin && x < EW && x > EWMin) {
+            if (nLeft == 1) {
+                x = 9999;
+                y = 9999;
+                dx = 0;
+                nStahp2 = -400;
+                nS = 1;
+                nCount = 0;
+                nCount2 = 0;
+                nLeft = 0;
+                stop = false;
+            }
+            else if (nRight == 1) {
+                x = 9999;
+                y = 9999;
+                dx = 0;
+                nStahp = 400;
+                nS = 1;
+                nCount = 0;
+                nCount2 = 0;
+                nRight = 0;
+                stop = false;
+            }
             nHit++;
-            System.out.println("Smack");
-            
+            nHit1 = nHit;
+            if ( nHit == nEXP) {
+                nHit1--;
+                nEXP += 5;
+            System.out.println("Smack " + nHit + " " + nHit1);
+            PanBoard.setHit(nHit, nHit1);
+        }
         }
     }
-
     public int getBX() {
         return x;
     }
