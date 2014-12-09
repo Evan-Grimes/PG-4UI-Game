@@ -133,7 +133,7 @@ public class Bullet {
 
     public void keyPressed2(KeyEvent w) {
         int code = w.getKeyCode();
-        if (code == KeyEvent.VK_Q) {
+        if (code == KeyEvent.VK_SPACE) {
             if (I == 0) { //Looking Left
                 if (nS == 1) {
                     x = X;

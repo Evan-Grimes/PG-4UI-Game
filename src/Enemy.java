@@ -43,7 +43,7 @@ public class Enemy {
         EW = imgWidth + x - 30;
         x += dx;
         y += dy;
-        Bullet.SetEnemy(x, y, EH, EW, k);
+         Bullet.SetEnemy(x, y, EH, EW, k);
 
         if (k == 1 || k == 2) {
             if (X > x) {
@@ -60,7 +60,7 @@ public class Enemy {
             } else {
                 dy = 0;
             }
-
+            
         }
     }
 
@@ -87,14 +87,14 @@ public class Enemy {
             }
             return img;
         }
-        if (X >= x) {
-            k = 1;
-            return img;
-        }
-        if (X <= x) {
-            k = 2;
-            return img;
-        }
+            if (X >= x) {
+                k = 1;
+                return img;
+            }
+            if (X <= x) {
+                k = 2;
+                return img;
+            }
         return img;
     }
 
