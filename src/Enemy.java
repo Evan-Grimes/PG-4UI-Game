@@ -5,10 +5,9 @@ public class Enemy {
 
     private Image img;
     int k;
-    int nHit;
     int x, y, dx, dy;
-    static int X, Y, I, BX, BY;
-    int nWidth, nLength, EH, EW;
+    static int X, Y, I, BX, BY, nHit;
+    int nWidth, nLength, EH, EW, nEXP, nSpawn;
     private final int nSpeed = 5;
     ImageIcon e1 = new ImageIcon("Groudon1.png");
     ImageIcon e2 = new ImageIcon("Groudon2.png");
@@ -23,9 +22,10 @@ public class Enemy {
         I = _i;
     }
 
-    static void SetBullet(int _x, int _y) {
+    static void SetBullet(int _x, int _y, int _nHit) {
         BX = _x;
         BY = _y;
+        nHit = _nHit;
     }
 
     public Enemy() {
@@ -33,8 +33,7 @@ public class Enemy {
         dy = 0;
         x = 0;
         y = 0;
-        //nWidth = 0;
-        //nLength = 0;
+        nEXP = 5;
         arnEnemy[1] = e1.getImage();
         arnEnemy[2] = e2.getImage();
     }
@@ -42,24 +41,26 @@ public class Enemy {
     public void move() {
         EH = imgHeight + y - 30;
         EW = imgWidth + x - 30;
-        Bullet.SetEnemy(x, y, EH, EW);
         x += dx;
         y += dy;
-        nHit = y + 30;
-        if (X > x) {
-            dx = nSpeed;
-        } else if (X < x) {
-            dx = -nSpeed;
-        } else {
-            dx = 0;
+        Bullet.SetEnemy(x, y, EH, EW, k);
 
-        }
-        if (Y > y) {
-            dy = nSpeed;
-        } else if (Y < y) {
-            dy = -nSpeed;
-        } else {
-            dy = 0;
+        if (k == 1 || k == 2) {
+            if (X > x) {
+                dx = nSpeed;
+            } else if (X < x) {
+                dx = -nSpeed;
+            } else {
+                dx = 0;
+            }
+            if (Y > y) {
+                dy = nSpeed;
+            } else if (Y < y) {
+                dy = -nSpeed;
+            } else {
+                dy = 0;
+            }
+
         }
     }
 
@@ -73,6 +74,19 @@ public class Enemy {
 
     public Image getImage() {
         img = arnEnemy[k];
+        if (nHit == nEXP) {
+            k = 0;
+            x = 3000;
+            y = 3000;
+            nSpawn++;
+            if (nSpawn >= 20) {
+                nSpawn = 0;
+                x = 100;
+                y = 100;
+                nEXP += 5;
+            }
+            return img;
+        }
         if (X >= x) {
             k = 1;
             return img;
@@ -81,7 +95,6 @@ public class Enemy {
             k = 2;
             return img;
         }
-        
         return img;
     }
 

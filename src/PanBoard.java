@@ -30,7 +30,7 @@ public class PanBoard extends JPanel implements ActionListener {
 
     static void setHit(int _nHit, int _nHit1) {
         nHit = _nHit;
-        nHit1 = _nHit;
+        nHit1 = _nHit1;
     }
 
     public PanBoard() {
@@ -44,7 +44,7 @@ public class PanBoard extends JPanel implements ActionListener {
         background = i1.getImage();
         timer = new Timer(80, this);
         timer.start();
-        Label();
+        //Label();
         /*JLabel tHp = new JLabel("Health: " + Hp);
          JLabel tAtk = new JLabel("Attack: " + Atk);
          JLabel tLvl = new JLabel("Level: " + Lvl);
@@ -56,40 +56,32 @@ public class PanBoard extends JPanel implements ActionListener {
          txpgoal = new JLabel(" ");
          }
          add(tName);
-         /dd(tLvl);
+         add(tLvl);
          add(tHp);
          add(tAtk);
          add(tcurrxp);
          add(txpgoal);*/
-    }
+        //}
 
-    private void Label() {
-
-        if (nHit == nHit1) {
-            System.out.println(nHit + " " + nHit1);
-            setLayout(new FlowLayout());
-            add(JLabel = new Label(sName + "  -  Level: "
-                    + nLvl + "  Health: " + nHp + "  Attack: " + nAtk + "  Experience: "
-                    + nHit + " / " + nXpgoal), BorderLayout.NORTH);
-            //nHit1 -= nChange;
-            //nChange = 0;
-        } else if (nHit > nHit1) {
-            System.out.println("CHANGE");
-            RemoveLabel();
-        } else {
-            //add(JLabel);
-        }
-    }
-
-    private void RemoveLabel() {
-        System.out.println("IS GOOD");
-        remove(JLabel);
-        nHit1++;
-        //nChange = 1;
+        /*private void Label() {
+         System.out.println(nHit + " " + nHit1);
+         setLayout(new FlowLayout());
+         Label tStats = new Label(sName + "  -  Level: "
+         + nLvl + "  Health: " + nHp + "  Attack: " + nAtk + "  Experience: "
+         + nCurrxp+ " / " + nXpgoal);
+         if (nHit == nHit1) {
+         add(tStats, BorderLayout.NORTH);
+         } else {
+         System.out.println("CHANGE");
+         remove(tStats);
+         nHit1++;
+         nCurrxp+=30;
+        
+         }*/
     }
 
     public void actionPerformed(ActionEvent arg0) {
-        Label();
+        //Label();
         p.move();
         b.move();
         e.move();

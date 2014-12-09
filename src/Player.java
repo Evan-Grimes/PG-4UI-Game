@@ -29,8 +29,8 @@ public class Player {
     }
 
     public void move() {
-        Bullet.SetPlayer(x,y,i);
-        Enemy.SetPlayer(x,y,i);
+        Bullet.SetPlayer(x, y, i);
+        Enemy.SetPlayer(x, y, i);
         x += dx;
         y += dy;
 
@@ -53,6 +53,7 @@ public class Player {
         }
         return img;
     }
+
     public void keyPressed(KeyEvent w) {
         int code = w.getKeyCode();
         if (code == KeyEvent.VK_A) {
@@ -72,7 +73,7 @@ public class Player {
             up = false;
             dy = SPEED;
         }
-        
+
     }
 
     public void keyReleased(KeyEvent w) {
@@ -103,5 +104,5 @@ public class Player {
             }
         }
     }
-    
+
 }
